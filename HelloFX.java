@@ -1,4 +1,5 @@
 import java.io.*;
+
 import org.graalvm.polyglot.*;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -19,16 +20,18 @@ public class HelloFX extends Application {
     }
 
     public static void main(String[] args) throws IOException {
-        launch();
 	    Context polyglot = Context.newBuilder()
                                .allowAllAccess(true)
                                .build();
         File file = new File("notifier");
         Source source = Source.newBuilder("llvm", file).build();
 	    Value cpart = polyglot.eval(source);
-       
+        String name = "Diego";
+        String message = "Hi m8s";
+        
         if(cpart.canInvokeMember("notify_message")){
-            cpart.invokeMember("notify_message");
+            cpart.invokeMember("notify_message",name, message);
         };
+        launch();
     }
 }
