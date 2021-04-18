@@ -23,12 +23,12 @@ public class HelloFX extends Application {
 	    Context polyglot = Context.newBuilder()
                                .allowAllAccess(true)
                                .build();
-        
-        Value cbindings = polyglot.getBindings("llvm");
-        
         File file = new File("notifier");
         Source source = Source.newBuilder("llvm", file).build();
 	    Value cpart = polyglot.eval(source);
-        cpart.execute(); 
+       
+        if(cpart.canInvokeMember("notify_message")){
+            cpart.invokeMember("notify_message");
+        };
     }
 }
