@@ -1,7 +1,9 @@
-compile:
-	javac --module-path ${PATH_TO_FX} --add-modules javafx.controls HelloFX.java
+compile_llvm:
 	${LLVM_TOOLCHAIN}/clang -shared notifier.c -lgraalvm-llvm `pkg-config --cflags --libs libnotify` -o notifier
-run: compile
+compile_java:
+	javac --module-path ${PATH_TO_FX} --add-modules javafx.controls HelloFX.java
+compile: compile_llvm compile_java
+run:
 	java --module-path ${PATH_TO_FX} --add-modules javafx.controls HelloFX
 clean:
-	rm HelloFX.class notifier
+	rm *.class notifier
