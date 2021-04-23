@@ -15,7 +15,7 @@ import javafx.stage.Stage;
 
 import org.graalvm.polyglot.*;
 
-public class HelloFX extends Application {
+public class PolyglotFX extends Application {
 
     @Override
     public void start(Stage stage) {
@@ -32,7 +32,6 @@ public class HelloFX extends Application {
                 MessagePOJO messagePOJO = parseMessage((String) workerStateEvent.getSource().getValue());
                 if (stage.isIconified())
                     notifyMessage(messagePOJO);
-                System.out.println((String) workerStateEvent.getSource().getValue());
             }
         });
         service.start();
@@ -53,12 +52,10 @@ public class HelloFX extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public MessagePOJO parseMessage(String json) {
         try (Context polyglot = Context.create("js")) {
-            File file = new File("JSONparser.js");
             Value jsObj = polyglot.eval("js", "JSON.parse('" + json + "')");
             if (jsObj.hasMember("author") && jsObj.hasMember("body")) {
                 MessagePOJO message = new MessagePOJO();
@@ -66,7 +63,6 @@ public class HelloFX extends Application {
                 message.set_body(jsObj.getMember("body").asString());
                 return message;
             }
-
         }
         return null;
     }
