@@ -4,6 +4,8 @@ This is a project is a code test for the Oracle Labs Intership program. One of t
 
 This project is a simple messaging application that needs to solve two problems for which java is not the best option. The first of these problems is that we are going to receive the messages in JSON format and we are going to want to extract their values, for that we will use JS. And finally, we want to notify the user that new messages have arrived, so we will have to connect to one of the OS libraries using C.
 
+I have decided to only implement the input of the messages since the objective of this project is to use polyglot programming and I believe that implementing more features will only add noise.
+
 ## Prerequisites
  
  For this explanation I am going to assume that you are using a Linux distro.
@@ -68,7 +70,7 @@ export PATH_TO_FX=/opt/javafx-sdk-11.0.2/lib/
 Everything you need to compile and run the project is reflected in the Makefile, however, if you use different modules than the ones I have used, such as FXML, 
 you should modify it.
 
-### LLVM 
+### LLVM
 
 Now that we have to install the LLVM tools, we must use the Graal component updater.
 
@@ -110,3 +112,25 @@ Finally, when you want to delete the compiled files invoke
 ```bash
 make clean
 ```
+
+## MIT LICENSE
+
+Copyright (c) 2021 Diego Domínguez González
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
