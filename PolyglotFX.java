@@ -89,45 +89,45 @@ public class PolyglotFX extends Application {
     public String formatMessage(MessagePOJO messagePOJO) {
         return MessageFormat.format("{0} : {1}\n", messagePOJO.getAuthor(), messagePOJO.getBody());
     }
+}
 
-    class MessageListener extends ScheduledService<String> {
+class MessageListener extends ScheduledService<String> {
 
-        @Override
-        protected Task<String> createTask() {
+    @Override
+    protected Task<String> createTask() {
 
-            return new Task<String>() {
-                @Override
-                protected String call() throws Exception {
-                    /*
-                     * You can make any type of connection in this method without having to handle
-                     * any type of exception, if this method throws an exception the service will
-                     * call it again. I'm just going to pretend that messages are arriving.
-                     */
-                    Thread.sleep(10000);
-                    return "{\"author\": \"Diego\",\"body\": \"Hi m8s\"}";
-                }
-            };
-        }
+        return new Task<String>() {
+            @Override
+            protected String call() throws Exception {
+                /*
+                 * You can make any type of connection in this method without having to handle
+                 * any type of exception, if this method throws an exception the service will
+                 * call it again. I'm just going to pretend that messages are arriving.
+                 */
+                Thread.sleep(10000);
+                return "{\"author\": \"Diego\",\"body\": \"Hi m8s\"}";
+            }
+        };
+    }
+}
+
+class MessagePOJO {
+    private String author, body;
+
+    public String getAuthor() {
+        return this.author;
     }
 
-    class MessagePOJO {
-        private String author, body;
-
-        public String getAuthor() {
-            return this.author;
-        }
-
-        public void setAuthor(String author) {
-            this.author = author;
-        }
-
-        public String getBody() {
-            return this.body;
-        }
-
-        public void setBody(String body) {
-            this.body = body;
-        }
-
+    public void setAuthor(String author) {
+        this.author = author;
     }
+
+    public String getBody() {
+        return this.body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
 }
