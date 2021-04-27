@@ -1,4 +1,4 @@
-package com.seniorglez.polyglotfx;
+package com.seniorglez.polyglotfx.conections;
 
 import javafx.concurrent.ScheduledService;
 import javafx.concurrent.Task;

@@ -1,10 +1,11 @@
-package com.seniorglez.polyglotfx;
+package com.seniorglez.polyglotfx.view;
+
+import com.seniorglez.polyglotfx.conections.MessageListener;
+import com.seniorglez.polyglotfx.model.PFXMessage;
+import com.seniorglez.polyglotfx.model.PFXMessageBuilder;
+
 
 import java.io.*;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.SocketException;
-import java.text.MessageFormat;
 
 import javafx.concurrent.ScheduledService;
 import javafx.concurrent.WorkerStateEvent;
@@ -34,14 +35,11 @@ public class PolyglotFX extends Application {
         Scene scene = new Scene(vbox, 640, 480);
         stage.setScene(scene);
         ScheduledService<String> service = new MessageListener();
-        service.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-            @Override
-            public void handle(WorkerStateEvent workerStateEvent) {
-                PFXMessage pfxMessage = parseMessage((String) workerStateEvent.getSource().getValue());
+        service.setOnSucceeded((event) -> {
+                PFXMessage pfxMessage = PFXMessage.formJson((String) event.getSource().getValue());
                 printMessage(pfxMessage, textArea);
                 if (stage.isIconified())
                     notifyMessage(pfxMessage);
-            }
         });
         service.start();
         stage.show();
@@ -71,23 +69,6 @@ public class PolyglotFX extends Application {
     }
 
     public void printMessage(PFXMessage pfxMessage,TextArea textArea) {
-        textArea.setText(textArea.getText() + formatMessage(pfxMessage));
-    }
-
-    public PFXMessage parseMessage(String json) {
-        try (Context polyglot = Context.create("js")) {
-            Value jsObj = polyglot.eval("js", "JSON.parse('" + json + "')");
-            if (jsObj.hasMember("author") && jsObj.hasMember("body")) {
-                PFXMessage message = new PFXMessage();
-                message.setAuthor(jsObj.getMember("author").asString());
-                message.setBody(jsObj.getMember("body").asString());
-                return message;
-            }
-        }
-        return null;
-    }
-
-    public String formatMessage(PFXMessage pfxMessage) {
-        return MessageFormat.format("{0} : {1}\n", pfxMessage.getAuthor(), pfxMessage.getBody());
+        textArea.setText(textArea.getText() + pfxMessage.toString());
     }
 }
