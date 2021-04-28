@@ -98,7 +98,7 @@ The entire compilation and execution process is reflected within the Makefile.
 To compile invoke the following command.
 
 ```bash
-make compile
+make package
 ```
 
 To run the application, after compiling, invoke the following command.

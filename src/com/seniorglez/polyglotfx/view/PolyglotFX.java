@@ -33,7 +33,7 @@ public class PolyglotFX extends Application {
         stage.setScene(scene);
         ScheduledService<String> service = new MessageListener();
         service.setOnSucceeded((event) -> {
-                PFXMessage pfxMessage = PFXMessage.formJson((String) event.getSource().getValue());
+                PFXMessage pfxMessage = PFXMessage.fromJson((String) event.getSource().getValue());
                 viewModel.printMessage(pfxMessage);
                 if (stage.isIconified()) viewModel.notifyMessage(pfxMessage);
         });

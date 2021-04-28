@@ -9,7 +9,7 @@ public class PFXMessage {
 
     private final String author, body;
 
-    public static PFXMessage formJson(String json) {
+    public static PFXMessage fromJson(String json) {
         try (Context polyglot = Context.create("js")) {
             Value jsObj = polyglot.eval("js", "JSON.parse('" + json + "')");
             if (jsObj.hasMember("author") && jsObj.hasMember("body")) {
