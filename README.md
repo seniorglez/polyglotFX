@@ -1,6 +1,6 @@
 # Polyglot ETL
 
-This is a project is a code test for the Oracle Labs Intership program. One of the themes they proposed was to make a simple polyglot application. I have decided to approach this topic in such a way that my application solves a real-world problem.
+This is a project is a code test for the Oracle Labs Internship program. One of the themes they proposed was to make a simple polyglot application. I have decided to approach this topic in such a way that my application solves a real-world problem.
 
 This project is a simple messaging application that needs to solve two problems for which java is not the best option. The first of these problems is that we are going to receive the messages in JSON format and we are going to want to extract their values, for that we will use JS. And finally, we want to notify the user that new messages have arrived, so we will have to connect to one of the OS libraries using C.
 
