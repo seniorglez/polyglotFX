@@ -1,7 +1,5 @@
 package com.seniorglez.polyglotfx.model;
 
-import com.seniorglez.polyglotfx.model.PFXMessage;
-
 public class PFXMessageBuilder {
     private String author, body;
 
